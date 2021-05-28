@@ -1,0 +1,51 @@
+import rodados.*
+import dependencias.*
+
+test "interior" {
+	traffic.interior(interiorComodo)
+	traffic.motor(motorPulenta)
+	
+	assert.that(traffic.peso() == 5500)
+}
+
+test "dependencia" {
+	var d1 = new Dependencia(nombre = "Deportes")
+	var d2 = new Dependencia(nombre = "Salud")
+	d1.agregarAFlota(new Corsa(color = "Rojo"))
+	d2.agregarAFlota(new Corsa(color = "Rojo"))
+	d1.agregarAFlota(traffic)
+	traffic.interior(interiorComodo)
+	traffic.motor(motorBataton)
+	d2.agregarAFlota(traffic) //Para ver que la traffic apunta a 2 dependencias, la comparten
+	
+	assert.that(d1.pesoTotalFlota() == d2.pesoTotalFlota())
+}
+
+test "Test con dos dependencias" {
+	
+	var cachito = new Corsa(color = "Rojo")
+	var deportes = new Dependencia(nombre = "Deportes", empleados = 45, flota = [cachito, new Corsa(color = "Azul"), new Corsa(color = "Verde"), new Kwid(tieneGas = true), new AutosEspeciales(capacidad = 5, velocidadMaxima = 160, peso = 1200, color = "beige")])
+	var cultura = new Dependencia(nombre = "Cultura", empleados = 31, flota = [cachito, new Kwid(tieneGas = true), new Kwid(tieneGas = true), new Kwid(), traffic])
+	traffic.interior(interiorPopular)
+	traffic.motor(motorBataton)
+	
+	//Peso deportes = 1300 + 1300 + 1300 +  1200+150 + 1200 = 6450
+	//Peso cultura = 1300 + 1200+150 + 1200+150 + 1200 + 4000+1000+500 = 10700
+	assert.equals(deportes.pesoTotalFlota(), 6450)
+	assert.equals(cultura.pesoTotalFlota(), 10700)
+
+	assert.that(deportes.estaBienEquipada())
+	assert.notThat(cultura.estaBienEquipada())
+	
+	assert.equals(deportes.capacidadTotalEnColor("azul"), 3)
+	assert.equals(cultura.capacidadTotalEnColor("azul"), 10)
+	
+	assert.equals(deportes.colorDelRodadoMasRapido(), "beige")
+	assert.equals(cultura.colorDelRodadoMasRapido(), "Rojo")
+	
+	assert.that(deportes.esGrande())
+	assert.notThat(cultura.esGrande())
+	
+	assert.equals(deportes.capacidadFaltante(), 25)
+	assert.equals(cultura.capacidadFaltante(), 5)
+}

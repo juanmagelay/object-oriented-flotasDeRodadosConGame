@@ -1,9 +1,9 @@
 import rodados.*
 
 class Dependencia {
-	var nombre
-	var flota = []
-	var empleados = 0
+	var property nombre
+	var property flota = []
+	var property empleados = 0
 	
 	method agregarAFlota(unRodado) {
 		flota.add(unRodado)
@@ -33,7 +33,7 @@ class Dependencia {
 		return 0.max(empleados - flota.sum( { r => r.capacidad() } ))
 	}
 	
-	method  esGrande() {
+	method esGrande() {
 		return empleados >= 40 and flota.size() >= 5
 	}
 }
