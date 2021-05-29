@@ -10,8 +10,11 @@ class Pedidos {
 	
 	method puedeSatisfacerPedido(unAuto) {
 		return
-			(unAuto.velocidadMaxima() >= 10) and
+			(unAuto.velocidadMaxima() >= 10 + self.velocidadRequerida()) and
 			(unAuto.capacidad() >= self.cantidadPasajeros()) and
 			(self.coloresIncompatibles().all( { c => c != unAuto.color() } ))
-	}	
+	}
+	
+	method acelerar() {	tiempoMax = tiempoMax - 1 }	
+	method relajar() {	tiempoMax = tiempoMax + 1 }	
 }

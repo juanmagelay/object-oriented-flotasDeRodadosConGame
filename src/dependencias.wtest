@@ -1,5 +1,6 @@
 import rodados.*
 import dependencias.*
+import pedidos.*
 
 test "interior" {
 	traffic.interior(interiorComodo)
@@ -48,4 +49,12 @@ test "Test con dos dependencias" {
 	
 	assert.equals(deportes.capacidadFaltante(), 25)
 	assert.equals(cultura.capacidadFaltante(), 5)
+}
+
+test "Autos que pueden" {
+	var cachito = new Corsa(color = "Rojo")
+	var pedido1 = new Pedidos(distancia = 960, tiempoMax = 8, cantidadPasajeros = 4, coloresIncompatibles = #{"azul", "negro"})
+	var deportes = new Dependencia(pedidos = [pedido1], nombre = "Deportes", empleados = 45, flota = [cachito, new Corsa(color = "Azul"), new Corsa(color = "Verde"), new Kwid(tieneGas = true), new AutosEspeciales(capacidad = 5, velocidadMaxima = 160, peso = 1200, color = "beige")])
+	assert.that(pedido1.puedeSatisfacerPedido(cachito))
+	assert.that(deportes.pedidosNoPuedenSerSatisfechos().isEmpty())
 }

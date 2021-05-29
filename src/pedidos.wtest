@@ -1,0 +1,21 @@
+import pedidos.*
+import rodados.*
+import dependencias.*
+
+test "pedidos cachito puede" {
+	var cachito1 = new Corsa(color = "rojo")
+	var pedido1 = new Pedidos(distancia = 960, tiempoMax = 8, cantidadPasajeros = 4, coloresIncompatibles = #{"azul", "negro"})
+	assert.that(pedido1.puedeSatisfacerPedido(cachito1))
+}
+
+test "pedidos cachito no puede" {
+	var cachito2 = new Corsa(color = "rojo")
+	var pedido2 = new Pedidos(distancia = 960, tiempoMax = 8, cantidadPasajeros = 6, coloresIncompatibles = #{"azul", "negro", "rojo"})
+	assert.notThat(pedido2.puedeSatisfacerPedido(cachito2))
+}
+
+test "pedidos cachito no puede por la velocidad" {
+	var cachito3 = new Corsa(color = "rojo")
+	var pedido3 = new Pedidos(distancia = 960, tiempoMax = 6, cantidadPasajeros = 4, coloresIncompatibles = #{"azul", "negro"})
+	assert.notThat(pedido3.puedeSatisfacerPedido(cachito3))
+}
