@@ -43,8 +43,16 @@ class Dependencia {
 		return pedidos.sum( { p => p.cantidadPasajeros() } )
 	}
 	
+	method algunAutoPuedeConPedido(unPedido) {
+		return flota.any( { a => unPedido.puedeSatisfacerPedido(a) } )
+	}	
+	
 	method pedidosNoPuedenSerSatisfechos() {
-		return pedidos.filter( { p => p.puedeSatisfacerPedido(flota.all( { a => a } )) } )
+		return pedidos.filter( { p => ! self.algunAutoPuedeConPedido(p) } )
+	}
+	
+	method losPedidosTienenIncompatible(unColor) {
+		return pedidos.all( { p => p.coloresIncompatibles().any( { c => c == unColor } ) } )
 	}
 }
 
