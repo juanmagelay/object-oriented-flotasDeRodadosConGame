@@ -15,6 +15,14 @@ class Corsa {
 		return posicionesAnteriores.any( { p => p == posicion } )	
 	}
 	
+	method pasoPorFila(numero) {
+		return posicionesAnteriores.any( { p => p.x() == numero } )	
+	}
+	
+	method recorrioFilas(listaNumeros) {
+		return listaNumeros.all( { n => self.pasoPorFila(n) } )
+	} 
+	
 	method moverALaDerecha() {
 		self.position(self.position().right(1))
 		posicionesAnteriores.add(self.position())

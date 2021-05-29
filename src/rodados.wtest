@@ -1,0 +1,15 @@
+import rodados.* 
+import wollok.game.*
+
+test "posiciones de rodados" {
+	var corsita = new Corsa(color = "azul")
+	corsita.moverALaDerecha()
+	
+	assert.equals(corsita.position(), new Position(x=5, y=7))
+	assert.that(corsita.pasoPorPosicion(new Position(x=5, y=7)))
+	assert.that(corsita.pasoPorFila(5))
+	
+	corsita.moverALaDerecha()
+	assert.equals(corsita.position(), new Position(x=6, y=7))
+	assert.that(corsita.recorrioFilas([5,6]))
+}

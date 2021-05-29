@@ -1,9 +1,17 @@
 import wollok.game.*
+import rodados.*
 
 program corsasEnElGame {
 	game.width(15) 
 	game.height(15)
 	game.title("corsas") 
+	var corsita = new Corsa(color = "rojo")
+	game.addVisual(corsita)
+	
+	keyboard.right().onPressDo{ corsita.moverALaDerecha() }
+	keyboard.left().onPressDo{ corsita.moverALaIzquierda() }
+	keyboard.up().onPressDo{ corsita.moverAArriba() }
+	keyboard.down().onPressDo{ corsita.moverAAbajo() }
 	
 	game.start()
 }
