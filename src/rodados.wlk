@@ -1,9 +1,39 @@
+import wollok.game.*
+
 class Corsa {
+	var property image = "autitorojo.png"
+	var property position = game.at(4,7)
+	var property posicionesAnteriores = []
+	
 	const property color //Porque quiero tener el setter para 1 solo uso y luego tener el getter
 	
 	method capacidad() { return 4 }	
 	method velocidadMaxima() { return 150 }
 	method peso(){ return 1300 }
+	
+	method pasoPorPosicion(posicion) {
+		return posicionesAnteriores.any( { p => p == posicion } )	
+	}
+	
+	method moverALaDerecha() {
+		self.position(self.position().right(1))
+		posicionesAnteriores.add(self.position())
+	}
+	
+	method moverALaIzquierda() {
+		self.position(self.position().left(1))
+		posicionesAnteriores.add(self.position())
+	}
+	
+	method moverAArriba() {
+		self.position(self.position().up(1))
+		posicionesAnteriores.add(self.position())
+	}
+
+	method moverAAbajo() {
+		self.position(self.position().down(1))
+		posicionesAnteriores.add(self.position())
+	}
 }
 
 class Kwid {

@@ -1,7 +1,9 @@
 import wollok.game.*
 
 program corsasEnElGame {
-	// hacer las inicializaciones necesarias 
+	game.width(15) 
+	game.height(15)
+	game.title("corsas") 
 	
 	game.start()
 }
