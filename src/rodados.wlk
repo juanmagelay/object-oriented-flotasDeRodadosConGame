@@ -1,7 +1,7 @@
 import wollok.game.*
 
 class Corsa {
-	var property image = "autitorojo.png"
+	var property image = "auto-rojo.png"
 	var property position = game.at(4,7)
 	var property posicionesAnteriores = []
 	
