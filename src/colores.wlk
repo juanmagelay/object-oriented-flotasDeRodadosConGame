@@ -1,11 +1,11 @@
-object verde {
-	const property image = "auto-verde.png"
+object verde  {
+	const property imagen = "auto-verde.png"
 }
 
 object azul {
-	const property image = "auto-azul.png"
+	const property imagen = "auto-azul.png"
 }
 
 object rojo {
-	const property image = "auto-rojo.png"
+	const property imagen = "auto-rojo.png"
 }

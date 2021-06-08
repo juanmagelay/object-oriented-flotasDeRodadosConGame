@@ -1,11 +1,13 @@
 import wollok.game.*
+import colores.*
 
 class Corsa {
-	var property image = "auto-rojo.png"
 	var property position = game.at(4,7)
 	var property posicionesAnteriores = []
 	
 	const property color //Porque quiero tener el setter para 1 solo uso y luego tener el getter
+
+	var property image = "auto-rojo.png"
 	
 	method capacidad() { return 4 }	
 	method velocidadMaxima() { return 150 }

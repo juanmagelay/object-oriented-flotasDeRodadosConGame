@@ -7,17 +7,27 @@ program corsasEnElGame {
 	game.width(15) 
 	game.height(15)
 	game.title("corsas") 
-	var corsita = new Corsa(color = "rojo")
-	game.addVisual(corsita)
 	
-	keyboard.right().onPressDo{ corsita.moverALaDerecha() }
-	keyboard.left().onPressDo{ corsita.moverALaIzquierda() }
-	keyboard.up().onPressDo{ corsita.moverAArriba() }
-	keyboard.down().onPressDo{ corsita.moverAAbajo() }
+	var corsita1 = new Corsa(color = "rojo")
+	game.addVisual(corsita1)
 	
-	keyboard.r().onPressDo{ corsita.image(rojo.image()) }
-	keyboard.v().onPressDo{ corsita.image(verde.image()) }
-	keyboard.a().onPressDo{ corsita.image(azul.image()) }
+	var corsita2 = new Corsa(color = "azul", position = game.at(3,7))
+	game.addVisual(corsita2)
+	
+	var autosElegidos = [corsita1]
+	
+	keyboard.num1().onPressDo{ autosElegidos = [corsita1] }
+	keyboard.num2().onPressDo{ autosElegidos = [corsita2] }
+	keyboard.t().onPressDo{ autosElegidos = [corsita1, corsita2] }
+		
+	keyboard.right().onPressDo{ autosElegidos.forEach( { a => a.moverALaDerecha() } ) }
+	keyboard.left().onPressDo{ autosElegidos.forEach( { a => a.moverALaIzquierda() } ) }
+	keyboard.up().onPressDo{ autosElegidos.forEach( { a => a.moverAArriba() } ) }
+	keyboard.down().onPressDo{ autosElegidos.forEach( { a => a.moverAAbajo() } ) }
+	
+	keyboard.r().onPressDo{ autosElegidos.forEach( { a => a.image(rojo.imagen()) } ) } 
+	keyboard.v().onPressDo{ autosElegidos.forEach( { a => a.image(verde.imagen()) } ) } 
+	keyboard.a().onPressDo{ autosElegidos.forEach( { a => a.image(azul.imagen()) } ) } 
 	
 	game.start()
 }
